@@ -27,11 +27,11 @@ def get_access_token():
     """
     使用 API Key，Secret Key 获取access_token，替换下列示例中的应用API Key、应用Secret Key
     """
-    # longling account    
-    url = "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=Q5vv5n6ebmRfhfBiH4tQuicH&client_secret=r0sfV62QfDWeyRKWAZYpHQF0VX84Odrp"
-    # rogerzzhu account  
-    #url = "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=GjkHsZ7CwmrafbKZCudrmRZK&client_secret=4fmMdBlHfE7ndjPft0g3V1QzvGja7qXv"   
-    #url = "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=QQIoGzqwS6JIJ0G9yTqSmllB&client_secret=T7Sf6eZk6jqMzHh7Kk08ejlBG4iEJKAB"
+    # longling account
+    url = "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=?????"
+    # rogerzzhu account
+    #url = "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=????"
+    #url = "https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=??????"
 
     
     payload = json.dumps("")
