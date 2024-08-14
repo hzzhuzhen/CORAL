@@ -16,6 +16,3 @@ The CORAL project is structured into two main modules:
 
 Feel free to explore each module for a deeper understanding of the project's architecture and functionalities.
 
-
-
-### we are removing some sensitive information and revise the document. CORAL code will available soon in github....
