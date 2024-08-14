@@ -1,0 +1,12 @@
+backoff==2.2.1
+filelock==3.13.3
+Flask==3.0.2
+Flask_Cors==4.0.0
+numpy==1.26.4
+pandas==2.2.1
+Requests==2.31.0
+scikit_learn==1.4.1.post1
+sentencepiece==0.2.0
+torch==2.2.1
+tqdm==4.66.2
+transformers==4.27.2

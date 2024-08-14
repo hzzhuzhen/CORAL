@@ -1,0 +1,113 @@
+## 数据库建库名称CORAL
+CREATE DATABASE CORAL;
+USE CORAL;
+
+####用户基础表####
+CREATE TABLE `TB_YXM_USER` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id，自增',
+    `name` varchar(100) NOT NULL DEFAULT '' COMMENT '用户名',
+    `password` varchar(100) NOT NULL DEFAULT '' COMMENT '密码，MD5非对称加密',
+    `phone_number` bigint(20) NOT NULL DEFAULT '0' COMMENT '手机号',
+    `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间' ON UPDATE CURRENT_TIMESTAMP,
+    `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '状态，-1-无效，1-有效',
+    PRIMARY KEY (`id`) USING BTREE,
+    KEY `uni_name_pwd` (`name`, `password`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户基础表';
+
+####用户信息扩展表####（暂时不建）
+CREATE TABLE `TB_YXM_USER_DETAIL` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id，与基础表一致',
+    `create_time` TIMESTAMP NOT NULL CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` TIMESTAMP NOT NULL CURRENT_TIMESTAMP COMMENT '更新时间' ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户信息扩展表';
+
+
+####任务基础表####
+CREATE TABLE `TB_YXM_TASK` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务id',
+    `task_type` int(10) NOT NULL DEFAULT '0' COMMENT '任务类型',
+    `owner_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '归属用户id',
+    `name` varchar(100) NOT NULL DEFAULT '' COMMENT '任务名称',
+    `epoch` tinyint(4) NOT NULL DEFAULT '1' COMMENT '迭代次数',
+    `input_data_url` varchar(256) NOT NULL DEFAULT '' COMMENT '输入语料地址',
+    `output_data_url` varchar(256) NOT NULL DEFAULT '' COMMENT '输出语料地址',
+    `llm_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '大模型标识',
+    `slm_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '小模型标识',
+    `remark` varchar(1024) NOT NULL DEFAULT '' COMMENT '备注',
+    `threshold` bigint(20) NOT NULL DEFAULT '0' COMMENT '筛选阈值',
+    `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '任务状态，0-未开始，1-进行中，2-执行中止中，3-结束，-1-暂停，-2-异常终止',
+    `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间' ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`) USING BTREE,
+    KEY `idx_ols_id` (`owner_id`, `llm_id`, `slm_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='任务基础表';
+
+####任务进度表####
+CREATE TABLE `TB_YXM_TASK_PROGRESS` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '任务id',
+    `current_epoch` tinyint(4) NOT NULL DEFAULT '0' COMMENT '当前迭代次数',
+    `current_model` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'llm=1,slm=2',
+    `process` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0-100',
+    `is_correcting` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否在人工修正 1修正阶段，0非修正阶段',
+    `step_over` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0 不是自动跳过，1自动跳过阶段',
+    `loss` float(10,4) NOT NULL DEFAULT '0.0' COMMENT '损失值',
+    `label_match` float(10,4) NOT NULL DEFAULT '0.0' COMMENT 'LLM-SLM标签相同比例',
+    `start_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '开始时间',
+    `end_time` TIMESTAMP NOT NULL DEFAULT '1970-01-01 00:00:01' COMMENT '结束时间',
+    `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间' ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=12837884 DEFAULT CHARSET=utf8mb4 COMMENT='任务进度表';
+
+#### 任务大模型提示模版表 ####
+CREATE TABLE `TB_YXM_TASK_PROMPT` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `name` varchar(128) NOT NULL DEFAULT '' COMMENT '提示模版名称',
+    `task_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '任务id,0：表示通用模版，>0:任务中使用的专属模版',
+    `task_type` int(10) NOT NULL DEFAULT '0' COMMENT '任务类型',
+    `prompt_type` int(10) NOT NULL DEFAULT '0' COMMENT '1.初始提示模版，2重标注提示模版',
+    `content` text NULL COMMENT '提示内容',
+    `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间' ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`) USING BTREE,
+    KEY `idx_task_id` (`task_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='任务大模型提示表';
+
+#### 人工标注初始推荐表 ####
+CREATE TABLE `TB_YXM_MANUAL_INIT_LABELING_RECOMMEND` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `task_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '任务id',
+    `input_data_url` varchar(256) NOT NULL DEFAULT '' COMMENT '输入语料地址',
+    `seq` bigint(20) NOT NULL DEFAULT '0' COMMENT '语料中序号',
+    `data` text NULL COMMENT '语料文本',
+    `labeling` text NULL COMMENT '标注标签',
+    `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态 0-未标注，1-已标注',
+    `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间' ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`) USING BTREE,
+    KEY `idx_task_id` (`task_id`, `seq`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='人工标注初始推荐表';
+
+#### 人工修正推荐表 ####
+CREATE TABLE `TB_YXM_MANUAL_LABELING_CORRECTING_RECOMMEND` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `task_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '任务id',
+    `current_epoch` tinyint(4) NOT NULL DEFAULT '0' COMMENT '当前迭代次数',
+    `input_data_url` varchar(256) NOT NULL DEFAULT '' COMMENT '输入语料地址',
+    `output_data_url` varchar(256) NOT NULL DEFAULT '' COMMENT '输出语料地址',
+    `seq` bigint(20) NOT NULL DEFAULT '0' COMMENT '语料中序号',
+    `data` text NULL COMMENT '语料文本',
+    `llm_label` text NULL COMMENT '大模型标注标签',
+    `slm_label` text NULL COMMENT '小模型标注标签',
+    `manual_label` text NULL COMMENT '人工标注标签',
+    `loss` float(10,4) NOT NULL DEFAULT '0.0' COMMENT '损失值',
+    `representation` float(10,4) NOT NULL DEFAULT '0.0' COMMENT '表征性',
+    `confidence` float(10,4) NOT NULL DEFAULT '0.0' COMMENT '置信度',
+    `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态 0-未标注，1-已标注',
+    `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间' ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `idx_task_id` (`task_id`, `seq`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='人工修正推荐表';

@@ -1,0 +1,18 @@
+<model>
+    <llm>
+        <id>1</id>
+        <name>GPT 3.5 Turbo</name>
+    </llm>
+    <llm>
+        <id>2</id>
+        <name>ERNIE Bot</name>
+    </llm>
+    <slm>
+        <id>1</id>
+        <name>BERT</name>
+    </slm>
+    <slm>
+        <id>2</id>
+        <name>RoBERTa</name>
+    </slm>
+</model>

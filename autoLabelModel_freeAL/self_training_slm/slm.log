@@ -1,0 +1,169 @@
+04/02/2024 03:53:29 - WARNING - utils.utils -   Process rank: -1, device: cuda:0, n_gpu: 1, distributed training: False, 16-bits training: False
+04/02/2024 03:53:29 - INFO - utils.utils -   Training/evaluation parameters TrainingArguments(
+_n_gpu=1,
+adafactor=False,
+adam_beta1=0.9,
+adam_beta2=0.999,
+adam_epsilon=1e-08,
+auto_find_batch_size=False,
+bf16=False,
+bf16_full_eval=False,
+data_seed=None,
+dataloader_drop_last=False,
+dataloader_num_workers=0,
+dataloader_pin_memory=True,
+ddp_bucket_cap_mb=None,
+ddp_find_unused_parameters=None,
+ddp_timeout=1800,
+debug=[],
+deepspeed=None,
+disable_tqdm=False,
+do_eval=True,
+do_predict=True,
+do_train=True,
+embedding_dim=768,
+eval_accumulation_steps=None,
+eval_delay=0,
+eval_steps=10,
+evaluation_strategy=IntervalStrategy.EPOCH,
+fp16=False,
+fp16_backend=auto,
+fp16_full_eval=False,
+fp16_opt_level=O1,
+fsdp=[],
+fsdp_config={'fsdp_min_num_params': 0, 'xla': False, 'xla_fsdp_grad_ckpt': False},
+fsdp_min_num_params=0,
+fsdp_transformer_layer_cls_to_wrap=None,
+full_determinism=False,
+gradient_accumulation_steps=1,
+gradient_checkpointing=False,
+greater_is_better=None,
+group_by_length=False,
+half_precision_backend=auto,
+hub_model_id=None,
+hub_private_repo=False,
+hub_strategy=HubStrategy.EVERY_SAVE,
+hub_token=<HUB_TOKEN>,
+ignore_data_skip=False,
+include_inputs_for_metrics=False,
+jit_mode_eval=False,
+label_names=None,
+label_smoothing_factor=0.0,
+learning_rate=3e-05,
+length_column_name=length,
+load_best_model_at_end=False,
+local_rank=-1,
+log_level=passive,
+log_level_replica=warning,
+log_on_each_node=True,
+logging_dir=data_out,
+logging_first_step=False,
+logging_nan_inf_filter=True,
+logging_steps=10,
+logging_strategy=IntervalStrategy.STEPS,
+lr_scheduler_type=SchedulerType.LINEAR,
+max_grad_norm=1.0,
+max_steps=-1,
+metric_for_best_model=None,
+mp_parameters=,
+no_cuda=False,
+num_train_epochs=50.0,
+optim=OptimizerNames.ADAMW_HF,
+optim_args=None,
+output_dir=data_out,
+overwrite_output_dir=True,
+past_index=-1,
+per_device_eval_batch_size=128,
+per_device_train_batch_size=32,
+prediction_loss_only=False,
+push_to_hub=False,
+push_to_hub_model_id=None,
+push_to_hub_organization=None,
+push_to_hub_token=<PUSH_TO_HUB_TOKEN>,
+ray_scope=last,
+remove_unused_columns=False,
+report_to=[],
+resume_from_checkpoint=None,
+run_name=data_out,
+save_on_each_node=False,
+save_steps=1000,
+save_strategy=IntervalStrategy.STEPS,
+save_total_limit=3,
+seed=123,
+select_demo_num=100,
+sharded_ddp=[],
+shot_num=10,
+skip_memory_metrics=True,
+temp_u=0.85,
+tf32=None,
+torch_compile=False,
+torch_compile_backend=None,
+torch_compile_mode=None,
+torchdynamo=None,
+tpu_metrics_debug=False,
+tpu_num_cores=None,
+use_ipex=False,
+use_legacy_prediction_loop=False,
+use_mps_device=False,
+warmup=3,
+warmup_ratio=0.0,
+warmup_steps=0,
+weight_decay=0.01,
+xpu_backend=None,
+)
+Some weights of the model checkpoint at ./models/roberta-base were not used when initializing RobertaForSequenceClassification: ['lm_head.bias', 'lm_head.dense.weight', 'lm_head.layer_norm.bias', 'lm_head.layer_norm.weight', 'lm_head.dense.bias']
+- This IS expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing RobertaForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of RobertaForSequenceClassification were not initialized from the model checkpoint at ./models/roberta-base and are newly initialized: ['classifier.dense.weight', 'classifier.out_proj.weight', 'classifier.dense.bias', 'classifier.out_proj.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+04/02/2024 03:53:54 - INFO - datasets -   Creating features from dataset file at ../data
+04/02/2024 03:53:54 - INFO - datasets -   LOOKING AT ../data/mr train chat
+creating examples for train_chat:   0%|          | 0/8662 [00:00<?, ?it/s]creating examples for train_chat: 100%|██████████| 8662/8662 [00:00<00:00, 328609.45it/s]
+04/02/2024 03:53:54 - INFO - datasets -   Training examples: 8662
+convert examples to features: 0it [00:00, ?it/s]04/02/2024 03:53:54 - INFO - datasets -   
+Writing example 0 of 8662
+convert examples to features: 147it [00:00, 1464.10it/s]convert examples to features: 306it [00:00, 1533.96it/s]convert examples to features: 461it [00:00, 1536.98it/s]convert examples to features: 618it [00:00, 1547.47it/s]convert examples to features: 785it [00:00, 1588.23it/s]convert examples to features: 955it [00:00, 1623.47it/s]convert examples to features: 1118it [00:00, 1552.06it/s]convert examples to features: 1274it [00:00, 1541.38it/s]convert examples to features: 1448it [00:00, 1601.35it/s]convert examples to features: 1620it [00:01, 1636.32it/s]convert examples to features: 1728it [00:01, 1571.11it/s]convert examples to features: 1886it [00:01, 1538.58it/s]convert examples to features: 2041it [00:01, 1503.58it/s]convert examples to features: 2192it [00:01, 1373.91it/s]convert examples to features: 2342it [00:01, 1407.31it/s]convert examples to features: 2489it [00:01, 1422.77it/s]convert examples to features: 2633it [00:01, 1332.63it/s]convert examples to features: 2775it [00:01, 1354.07it/s]convert examples to features: 2921it [00:01, 1383.70it/s]convert examples to features: 3061it [00:02, 1352.79it/s]convert examples to features: 3207it [00:02, 1382.68it/s]convert examples to features: 3347it [00:02, 1312.56it/s]convert examples to features: 3493it [00:02, 1351.99it/s]convert examples to features: 3630it [00:02, 1330.86it/s]convert examples to features: 3797it [00:02, 1427.88it/s]convert examples to features: 3956it [00:02, 1474.76it/s]convert examples to features: 4118it [00:02, 1516.12it/s]convert examples to features: 4283it [00:02, 1554.94it/s]convert examples to features: 4447it [00:03, 1579.95it/s]convert examples to features: 4606it [00:03, 1485.87it/s]convert examples to features: 4769it [00:03, 1524.38it/s]convert examples to features: 4933it [00:03, 1556.08it/s]convert examples to features: 5096it [00:03, 1576.47it/s]convert examples to features: 5255it [00:03, 1552.45it/s]convert examples to features: 5413it [00:03, 1560.05it/s]convert examples to features: 5573it [00:03, 1571.07it/s]convert examples to features: 5731it [00:03, 1475.95it/s]convert examples to features: 5880it [00:03, 1472.12it/s]convert examples to features: 6029it [00:04, 1439.63it/s]convert examples to features: 6175it [00:04, 1443.60it/s]convert examples to features: 6327it [00:04, 1462.47it/s]convert examples to features: 6474it [00:04, 1392.04it/s]convert examples to features: 6621it [00:04, 1412.84it/s]convert examples to features: 6767it [00:04, 1425.37it/s]convert examples to features: 6911it [00:04, 1339.95it/s]convert examples to features: 7062it [00:04, 1387.05it/s]convert examples to features: 7212it [00:04, 1417.88it/s]convert examples to features: 7359it [00:05, 1432.34it/s]convert examples to features: 7508it [00:05, 1448.49it/s]convert examples to features: 7654it [00:05, 1444.09it/s]convert examples to features: 7799it [00:05, 1416.26it/s]convert examples to features: 7941it [00:05, 1380.77it/s]convert examples to features: 8080it [00:05, 1265.54it/s]convert examples to features: 8209it [00:06, 492.10it/s] convert examples to features: 8366it [00:06, 633.82it/s]convert examples to features: 8516it [00:06, 770.59it/s]convert examples to features: 8662it [00:06, 1319.81it/s]
+04/02/2024 03:53:51 - INFO - datasets -   *** Example ***
+04/02/2024 03:53:51 - INFO - datasets -   feature: {'inputs': DatasetInputFeature(index=0, input_ids=[0, 22, 11526, 14, 22, 16, 65, 9, 167, 3977, 2401, 2156, 8541, 36040, 36715, 14, 45, 129, 10578, 15, 63, 308, 2156, 53, 817, 47, 200, 12, 5521, 3361, 110, 15955, 13, 5, 1461, 479, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=None, label=0), 'inputs_bt': DatasetInputFeature(index=0, input_ids=[0, 113, 41640, 2158, 280, 113, 16, 65, 9, 167, 4200, 6, 7350, 36715, 14, 45, 129, 5998, 15, 49, 308, 6, 53, 146, 47, 2980, 110, 15955, 13, 5, 1461, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=None, label=0)}
+04/02/2024 03:53:51 - INFO - datasets -   *** Example ***
+04/02/2024 03:53:51 - INFO - datasets -   feature: {'inputs': DatasetInputFeature(index=1, input_ids=[0, 6968, 429, 224, 13152, 330, 14682, 34, 626, 70, 14, 18478, 2386, 2156, 114, 47, 770, 7, 146, 25, 1475, 12, 16731, 462, 7897, 10, 7434, 25, 678, 479, 37850, 7, 224, 63, 746, 4198, 16, 314, 2829, 542, 2650, 13268, 479, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=None, label=0), 'inputs_bt': DatasetInputFeature(index=1, input_ids=[0, 6968, 115, 224, 13152, 330, 14682, 34, 626, 960, 5, 6360, 2386, 6, 114, 47, 236, 7, 146, 25, 1475, 12, 16731, 462, 7897, 10, 7434, 25, 678, 4, 615, 7, 224, 39, 746, 4198, 16, 314, 2829, 542, 2650, 13268, 4, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=None, label=0)}
+04/02/2024 03:53:51 - INFO - datasets -   Saving features into cached file ../data/cached_train_chat_RobertaTokenizerFast_128_mr
+04/02/2024 03:53:54 - INFO - datasets -   Creating features from dataset file at ../data
+04/02/2024 03:53:54 - INFO - datasets -   LOOKING AT ../data/mr train
+creating examples for train:   0%|          | 0/8662 [00:00<?, ?it/s]creating examples for train: 100%|██████████| 8662/8662 [00:00<00:00, 364864.94it/s]
+04/02/2024 03:53:54 - INFO - datasets -   Training examples: 8662
+convert examples to features: 0it [00:00, ?it/s]04/02/2024 03:53:54 - INFO - datasets -   
+Writing example 0 of 8662
+convert examples to features: 296it [00:00, 2955.16it/s]convert examples to features: 592it [00:00, 2910.19it/s]convert examples to features: 904it [00:00, 3002.33it/s]convert examples to features: 1217it [00:00, 3049.79it/s]convert examples to features: 1523it [00:00, 2793.05it/s]convert examples to features: 1833it [00:00, 2890.14it/s]convert examples to features: 2125it [00:00, 2895.87it/s]convert examples to features: 2417it [00:00, 2684.49it/s]convert examples to features: 2700it [00:00, 2726.60it/s]convert examples to features: 2984it [00:01, 2758.13it/s]]convert examples to features: 5000it [00:01, 3111.33it/s]convert examples to features: 5328it [00:01, 3158.62it/s]convert examples to features: 5658it [00:01, 3197.88it/s]convert examples to features: 5985it [00:01, 3219.00it/s]convert examples to features: 6321it [00:01, 3260.70it/s]convert examples to features: 6655it [00:02, 3284.25it/s]convert examples to features: 6985it [00:02, 3031.61it/s]convert examples to features: 7317it [00:02, 3111.40it/s]convert examples to features: 7655it [00:02, 3186.92it/s]convert examples to features: 7987it [00:02, 3223.37it/s]convert examples to features: 8326it [00:02, 3269.19it/s]convert examples to features: 8655it [00:02, 3270.99it/s]convert examples to features: 8662it [00:02, 3200.67it/s]
+04/02/2024 03:53:47 - INFO - datasets -   *** Example ***
+04/02/2024 03:53:47 - INFO - datasets -   feature: DatasetInputFeature(index=0, input_ids=[0, 22, 11526, 14, 22, 16, 65, 9, 167, 3977, 2401, 2156, 8541, 36040, 36715, 14, 45, 129, 10578, 15, 63, 308, 2156, 53, 817, 47, 200, 12, 5521, 3361, 110, 15955, 13, 5, 1461, 479, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=None, label=0)
+04/02/2024 03:53:47 - INFO - datasets -   *** Example ***
+04/02/2024 03:53:47 - INFO - datasets -   feature: DatasetInputFeature(index=1, input_ids=[0, 6968, 429, 224, 13152, 330, 14682, 34, 626, 70, 14, 18478, 2386, 2156, 114, 47, 770, 7, 146, 25, 1475, 12, 16731, 462, 7897, 10, 7434, 25, 678, 479, 37850, 7, 224, 63, 746, 4198, 16, 314, 2829, 542, 2650, 13268, 479, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=None, label=0)
+04/02/2024 03:53:47 - INFO - datasets -   Saving features into cached file ../data/cached_train_RobertaTokenizerFast_128_mr
+04/02/2024 03:53:48 - INFO - datasets -   Creating features from dataset file at ../data
+04/02/2024 03:53:48 - INFO - datasets -   LOOKING AT ../data/mr dev
+creating examples for dev:   0%|          | 0/2000 [00:00<?, ?it/s]creating examples for dev: 100%|██████████| 2000/2000 [00:00<00:00, 261123.98it/s]
+04/02/2024 03:53:48 - INFO - datasets -   Training examples: 2000
+convert examples to features: 0it [00:00, ?it/s]04/02/2024 03:53:48 - INFO - datasets -   
+Writing example 0 of 2000
+convert examples to features: 327it [00:00, 3263.55it/s]convert examples to features: 654it [00:00, 3137.00it/s]convert examples to features: 987it [00:00, 3221.22it/s]convert examples to features: 1320it [00:00, 3260.29it/s]convert examples to features: 1656it [00:00, 3293.78it/s]convert examples to features: 1998it [00:00, 3333.30it/s]convert examples to features: 2000it [00:00, 3284.44it/s]
+04/02/2024 03:53:49 - INFO - datasets -   *** Example ***
+04/02/2024 03:53:49 - INFO - datasets -   feature: DatasetInputFeature(index=0, input_ids=[0, 13092, 2911, 5580, 2156, 15470, 8, 35138, 479, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=None, label=0)
+04/02/2024 03:53:49 - INFO - datasets -   *** Example ***
+04/02/2024 03:53:49 - INFO - datasets -   feature: DatasetInputFeature(index=1, input_ids=[0, 405, 18, 98, 784, 4917, 1173, 8, 13430, 2156, 129, 9231, 2786, 115, 3544, 465, 24, 6269, 479, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=None, label=0)
+04/02/2024 03:53:49 - INFO - datasets -   Saving features into cached file ../data/cached_dev_RobertaTokenizerFast_128_mr
+04/02/2024 03:53:49 - INFO - datasets -   Creating features from dataset file at ../data
+04/02/2024 03:53:49 - INFO - datasets -   LOOKING AT ../data/mr test
+creating examples for test:   0%|          | 0/2000 [00:00<?, ?it/s]creating examples for test: 100%|██████████| 2000/2000 [00:00<00:00, 570459.57it/s]
+04/02/2024 03:53:49 - INFO - datasets -   Training examples: 2000
+convert examples to features: 0it [00:00, ?it/s]04/02/2024 03:53:49 - INFO - datasets -   
+Writing example 0 of 2000
+convert examples to features: 337it [00:00, 3359.73it/s]convert examples to features: 673it [00:00, 3221.46it/s]convert examples to features: 1016it [00:00, 3314.23it/s]convert examples to features: 1348it [00:00, 3309.98it/s]convert examples to features: 1680it [00:00, 3142.28it/s]convert examples to features: 1996it [00:01, 1052.86it/s]convert examples to features: 2000it [00:01, 1618.39it/s]
+04/02/2024 03:53:50 - INFO - datasets -   *** Example ***
+04/02/2024 03:53:50 - INFO - datasets -   feature: DatasetInputFeature(index=0, input_ids=[0, 13092, 2911, 5580, 2156, 15470, 8, 35138, 479, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=None, label=0)
+04/02/2024 03:53:50 - INFO - datasets -   *** Example ***
+04/02/2024 03:53:50 - INFO - datasets -   feature: DatasetInputFeature(index=1, input_ids=[0, 405, 18, 98, 784, 4917, 1173, 8, 13430, 2156, 129, 9231, 2786, 115, 3544, 465, 24, 6269, 479, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=None, label=0)
+04/02/2024 03:53:50 - INFO - datasets -   Saving features into cached file ../data/cached_test_RobertaTokenizerFast_128_mr
+  0%|          | 0/34 [00:00<?, ?it/s], label=0)
+04/02/2024 03:53:41 - INFO - datasets -   Saving features into cached file ../data/cached_test_RobertaTokenizerFast_128_mr
+  0%|          | 0/34 [00:00<?, ?it/s]  3%|▎         | 1/34 [00:02<01:06,  2.01s/it]  6%|▌         | 2/34 [00:02<00:36,  1.14s/it]  9%|▉         | 3/34 [00:03<00:26,  1.16it/s] 12%|█▏        | 4/34 [00:03<00:22,  1.36it/s] 15%|█▍        | 5/34 [00:04<00:19,  1.51it/s] 18%|█▊        | 6/34 [00:04<00:17,  1.61it/s] 21%|██        | 7/34 [00:05<00:16,  1.69it/s] 24%|██▎       | 8/34 [00:05<00:14,  1.74it/s] 26%|██▋       | 9/34 [00:06<00:14,  1.77it/s] 29%|██▉       | 10/34 [00:06<00:13,  1.76it/s] 32%|███▏      | 11/34 [00:07<00:12,  1.79it/s] 35%|███▌      | 12/34 [00:07<00:12,  1.78it/s] 38%|███▊      | 13/34 [00:08<00:11,  1.77it/s] 41%|████      | 14/34 [00:09<00:11,  1.76it/s] 44%|████▍     | 15/34 [00:09<00:10,  1.75it/s] 47%|████▋     | 16/34 [00:10<00:10,  1.78it/s] 50%|█████     | 17/34 [00:10<00:09,  1.81it/s]

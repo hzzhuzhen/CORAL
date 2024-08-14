@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freeal.mapper.UserMapper">
+    <select id="selectUserByName" resultType="com.freeal.pojo.User">
+        select * from TB_YXM_USER
+        where name = #{name}
+    </select>
+
+    <insert id="insert" parameterType="com.freeal.pojo.Task">
+        insert into TB_YXM_USER (name,password,phone_number)
+               values (#{name}, #{password},#{phoneNumber})
+    </insert>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freeal.mapper.ProgressMapper">
+    <select id="selectProgressByTaskId" resultType="com.freeal.pojo.Epoch">
+        select
+            a.id as taskId,
+            a.epoch,
+            current_epoch
+            from TB_YXM_TASK_PROGRESS
+            join (
+                select
+                    id,
+                    status,
+                    epoch
+                from TB_YXM_TASK
+                where id = #{taskId}
+            ) a on A.id = TB_YXM_TASK_PROGRESS.id
+    </select>
+    <update id="updateCurrentEpoch">
+        UPDATE TB_YXM_TASK_PROGRESS
+        SET current_epoch = CASE
+                                WHEN current_epoch >= 15 THEN 0
+                                ELSE current_epoch + 1
+                            END
+        WHERE id = #{taskId};
+    </update>
+    <insert id="insertProgress" parameterType="com.freeal.pojo.Progress">
+        insert into TB_YXM_TASK_PROGRESS(
+            id,
+            current_epoch,
+            current_model,
+            process,
+            is_correcting,
+            step_over,
+            loss,
+            label_match
+        ) values (
+            #{id},
+            #{currentEpoch},
+            #{currentModel},
+            #{process},
+            #{isCorrecting},
+            #{stepOver},
+            #{loss},
+            #{labelMatch}
+        )
+    </insert>
+    <select id="selectProgressInfoByTaskId" resultType="com.freeal.pojo.Progress">
+        select * from TB_YXM_TASK_PROGRESS where id = #{taskId}
+    </select>
+    <update id="updateProgress" parameterType="com.freeal.pojo.Progress">
+        update TB_YXM_TASK_PROGRESS set
+            current_epoch = #{currentEpoch},
+            current_model = #{currentModel},
+            process = #{process},
+            is_correcting = #{isCorrecting},
+            step_over = #{stepOver},
+            loss = #{loss},
+            label_match = #{labelMatch},
+            start_time = #{startTime},
+            end_time = #{endTime},
+            create_time = #{createTime},
+            update_time = #{updateTime}
+        where id = #{id}
+    </update>
+    <update id="updateEndTimeById">
+        update TB_YXM_TASK_PROGRESS
+        set end_time=#{endTime}, update_time=#{updateTime}
+        where id=#{taskId};
+    </update>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freeal.mapper.TaskMapper">
+    <select id="getTaskList" resultType="com.freeal.pojo.Task">
+        SELECT * FROM TB_YXM_TASK
+        <where>
+            <if test="id != null"> AND id = #{id}</if>
+            <if test="name != null"> AND name = #{name}</if>
+            <if test="taskType != null"> AND task_type = #{taskType}</if>
+            <if test="status != null"> AND status = #{status}</if>
+            <if test="createTime != null"> AND create_time = #{createTime}</if>
+        </where>
+    </select>
+    <select id="getTaskById" resultType="com.freeal.pojo.Task">
+        select * from TB_YXM_TASK
+        where id = #{taskId}
+    </select>
+    <insert id="createTask" parameterType="com.freeal.pojo.Task" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO TB_YXM_TASK (
+        task_type, owner_id, name, epoch, input_data_url, output_data_url,
+        llm_id, slm_id, remark, threshold, status,
+        create_time, update_time)
+        VALUES (
+        #{taskType}, #{ownerId}, #{name}, #{epoch}, #{inputDataUrl}, #{outputDataUrl},
+        #{llmId}, #{slmId}, #{remark}, #{threshold}, #{status},
+        #{createTime}, #{updateTime})
+    </insert>
+    <update id="updateStatusById">
+        update TB_YXM_TASK
+        set status=#{status}, update_time=#{updateTime}
+        where id=#{taskId};
+    </update>
+</mapper>

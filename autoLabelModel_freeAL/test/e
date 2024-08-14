@@ -1,0 +1,1 @@
+- torch.log(y_hat.gather(1, y.view(-1, 1)))

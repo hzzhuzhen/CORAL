@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freeal.mapper.ManualEntityMapper">
+    <select id="queryManual" parameterType="java.lang.Long" resultType="com.freeal.pojo.ManualEntity">
+        SELECT
+            id, data, llm_label as "llmLabel", slm_label as "slmLabel",loss, representation, confidence,
+            manual_label as "manualLabel", input_data_url as "inputDataUrl", output_data_url as "outputDataUrl", seq,
+             status, current_epoch as "currentEpoch", task_id as "taskId"
+        FROM TB_YXM_MANUAL_LABELING_CORRECTING_RECOMMEND
+        WHERE task_id = #{taskId, jdbcType=VARCHAR} and current_epoch = #{currentEpoch, jdbcType=VARCHAR}
+    </select>
+
+    <update id="submit" parameterType="com.freeal.pojo.ManualEntity">
+        UPDATE TB_YXM_MANUAL_LABELING_CORRECTING_RECOMMEND
+        SET input_data_url = #{inputDataUrl,jdbcType=VARCHAR}, output_data_url = #{outputDataUrl,jdbcType=VARCHAR},
+            seq = #{seq,jdbcType=VARCHAR}, data = #{data,jdbcType=VARCHAR}, llm_label = #{llmLabel,jdbcType=VARCHAR},
+            slm_label = #{slmLabel,jdbcType=VARCHAR}, manual_label = #{manualLabel,jdbcType=VARCHAR}, loss = #{loss,jdbcType=VARCHAR},
+            representation = #{representation,jdbcType=VARCHAR}, confidence = #{confidence,jdbcType=VARCHAR},
+            status = #{status,jdbcType=VARCHAR}
+        WHERE id = #{id,jdbcType=VARCHAR} and current_epoch = #{currentEpoch, jdbcType=VARCHAR} and task_id = #{taskId, jdbcType=VARCHAR}
+    </update>
+
+
+
+    <update id="skip" parameterType="com.freeal.pojo.SkipEntity">
+        UPDATE TB_YXM_TASK_PROGRESS
+        SET step_over = #{stepOver,jdbcType=VARCHAR}
+        WHERE id = #{taskId,jdbcType=VARCHAR}
+    </update>
+
+    <select id="queryCertain" parameterType="com.freeal.pojo.QueryEntity" resultType="com.freeal.pojo.ManualEntity">
+        SELECT
+            id, input_data_url as "inputDataUrl", output_data_url as "outputDataUrl", seq, data,
+            llm_label as "llmLabel", slm_label as "slmLabel", manual_label as "manualLabel", loss,
+            representation, confidence, status
+        FROM TB_YXM_MANUAL_LABELING_CORRECTING_RECOMMEND
+        WHERE task_id = #{taskId, jdbcType=VARCHAR} and id = #{seq, jdbcType=VARCHAR}
+    </select>
+
+    <select id="querySeq" parameterType="com.freeal.pojo.QueryEntity" resultType="com.freeal.pojo.ManualEntity">
+        SELECT
+            id, input_data_url as "inputDataUrl", output_data_url as "outputDataUrl", seq, data,
+            llm_label as "llmLabel", slm_label as "slmLabel", manual_label as "manualLabel", loss,
+            representation, confidence, status
+        FROM TB_YXM_MANUAL_LABELING_CORRECTING_RECOMMEND
+        WHERE task_id = #{taskId, jdbcType=VARCHAR} and id >= #{lseq, jdbcType=VARCHAR} and #{rseq, jdbcType=VARCHAR} >= id
+    </select>
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freeal.mapper.TaskInfoMapper">
+    <select id="queryInfo" parameterType="java.lang.Long" resultType="com.freeal.pojo.TaskInfo">
+        SELECT
+        id as "taskId", name, epoch, input_data_url as "inputDataUrl", llm_id as "llmId", slm_id as "slmId", threshold
+        FROM TB_YXM_TASK
+        WHERE id = #{taskId, jdbcType=VARCHAR}
+    </select>
+</mapper>
